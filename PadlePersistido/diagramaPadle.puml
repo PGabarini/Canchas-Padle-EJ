@@ -1,0 +1,87 @@
+@startuml
+
+!define table(x) class x << (T,#FFAAAA) >>
+hide methods
+hide stereotypes
+
+table(Partido){
+  id
+  IdReserva
+  Inicio
+  Fin
+  cantJugadores
+}
+
+table(JugadorDePartido){
+  id
+  IdParticipanete
+  IdPaleta
+}
+
+
+
+table(Cancha){
+  Id
+  nombreID
+  colorId
+  Iluminacion
+}
+
+table(Color){
+  Id
+  descripcion
+}
+
+table(NombreCancha){
+  Id
+  nombre
+}
+
+table(JugadorXPartido){
+idJugador
+idPartido
+}
+
+table(Reserva){
+id
+idParticipante
+idCancha
+}
+
+table(Participante){
+  Id
+  nombre
+  Apellido
+  domicilio
+  fechaNacimiento
+}
+
+table(Constructor){
+  Id
+  nombre
+  domiciolio
+}
+
+table(Paleta){
+  Id
+  Grosor
+  Idcolor
+  IdConstructor
+}
+
+Paleta }|--||Color
+Paleta }o--||Constructor
+Cancha }|--||Color
+Cancha}|--||NombreCancha
+Partido }|--||Reserva
+
+JugadorDePartido }|--||Participante
+JugadorDePartido }|--||Paleta
+
+JugadorXPartido}|--||Partido
+JugadorXPartido}|--||JugadorDePartido
+
+Reserva }|--||Cancha
+Reserva }|--||Participante
+
+@enduml
